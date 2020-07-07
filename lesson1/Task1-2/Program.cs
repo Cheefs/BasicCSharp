@@ -10,7 +10,7 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter your heiht, metr: ");
+            Console.Write("Enter your height, metrs: ");
             double height = double.Parse(Console.ReadLine());
             Console.Write("Enter your weight, kg: ");
             double weight = double.Parse(Console.ReadLine());
