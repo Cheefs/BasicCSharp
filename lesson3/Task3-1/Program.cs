@@ -36,8 +36,8 @@ namespace Task3_1
             y.re = re - x.re;
             return y;
         }
-       
-        public string ToString()
+
+        public override string ToString()
         {
             if( re == 0 && im == 0 )
             {
@@ -73,7 +73,8 @@ namespace Task3_1
                     "What operation do you want to do?" +
                     "\n1 - Plus;" +
                     "\n2 - Multiply;" +
-                    "\n3 - Diff" +
+                    "\n3 - Diff"
+      
                 );
                 int choise = int.Parse(Console.ReadLine());
                 Complex result;
