@@ -17,7 +17,7 @@ using System.Linq;
  *   Если человек получает число больше положенного, игра прекращается.
  */
 
-namespace Task_4_5
+namespace Task4_5
 {
     class Doubler
     {
