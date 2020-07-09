@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 /**
  * 5. **Существует алгоритмическая игра “Удвоитель”.
@@ -44,25 +43,6 @@ namespace Task4_5
             this.finish = finish;
             current = START_POSITION;
             gameBegin = true;
-        }
-
-        void CheckSatus()
-        {
-            if (current > finish)
-            {
-              
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\tGame Ower! - Overflov");
-                Console.ForegroundColor = ConsoleColor.White;
-                gameBegin = false;
-            } 
-            else if ( current == finish)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("\tYou Win!");
-                Console.ForegroundColor = ConsoleColor.White;
-                gameBegin = false;
-            }
         }
 
         public void Add()
@@ -114,17 +94,32 @@ namespace Task4_5
                     break;
                 }
             }
-
-            PrintStatus();
-
             CheckSatus();
         }
 
-        void PrintStatus()
+        void CheckSatus()
         {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine($"\tCurrent: { current }");
-            Console.ForegroundColor = ConsoleColor.White;
+            if (current > finish)
+            {
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\tGame Ower! - Overflov");
+                Console.ForegroundColor = ConsoleColor.White;
+                gameBegin = false;
+            }
+            else if (current == finish)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\tYou Win!");
+                Console.ForegroundColor = ConsoleColor.White;
+                gameBegin = false;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($"\tCurrent: { current }");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
         }
 
         public bool CheckCommand( int command )
