@@ -26,22 +26,18 @@ namespace Task4_6
         public int ActiveQuestion { get; private set; } = 0;
         public int Score { get; private set; } = 0;
 
-
-        public TrueOrFalse()
-        {
-            Load();
-        }
-
-        void Load()
+        public string Start()
         {
             if (File.Exists(FILE_PATH))
             {
                 buffer = File.ReadAllLines(FILE_PATH);
                 PrepareQuestions();
+
+                return "Load all data success";
             }
             else
             {
-                Console.WriteLine($"Error File { FILE_PATH } not found in bin directory");
+                return $"Error File { FILE_PATH } not found in bin directory";
             }
         }
 
@@ -104,7 +100,13 @@ namespace Task4_6
         static void Main(string[] args)
         {
             TrueOrFalse game = new TrueOrFalse();
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine( game.Start() );
+            Console.ForegroundColor = ConsoleColor.White;
+
             Console.WriteLine("Enter \"y\" if True or \"n\" if false");
+
 
             while ( game.IsGameActive() )
             {
