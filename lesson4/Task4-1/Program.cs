@@ -17,12 +17,10 @@ namespace Task4_1
 
         static void Main()
         {
-            Console.WriteLine("Hello World!");
             int[] myArray = new int[ ARRAY_LENGTH ];
 
             //int[] testArray = { 6, 2, 9, -3, 6 };
             myArray = FillArray(myArray);
-
 
             Console.WriteLine(
                 GetCountOfCoupleItemsDevidedBy(myArray)

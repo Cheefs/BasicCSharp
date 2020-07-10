@@ -15,7 +15,6 @@ namespace Task4_2
 {
     class MyArray
     {
-        const string BASE_PATH = "./";
         const string FILE_NAME = "array.txt";
         const string DEVIDER = " ";
 
@@ -138,7 +137,7 @@ namespace Task4_2
         {
             try
             {
-                StreamWriter sw = new StreamWriter($"{ BASE_PATH }{ FILE_NAME }");
+                StreamWriter sw = new StreamWriter( FILE_NAME );
                 foreach (int item in a)
                 {
                     sw.WriteLine( item );
@@ -158,7 +157,7 @@ namespace Task4_2
         {
             try
             {
-                StreamReader sr = new StreamReader($"{ BASE_PATH }{ FILE_NAME }");
+                StreamReader sr = new StreamReader( FILE_NAME );
 
                 for( int i = 0; i < a.Length; i ++)
                 {

@@ -15,7 +15,7 @@ namespace Task4_6
     class TrueOrFalse
     {
         const int MAX_QUESTIONS = 5;
-        const string FILE_PATH = "./questions.txt";
+        const string FILE_PATH = "questions.txt";
         const string QUESTION_AND_ANSVER_DEVIDER = ";";
 
         string[] gameConamds = { "y", "n" };

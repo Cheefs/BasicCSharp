@@ -20,7 +20,7 @@ namespace Task4_4
         const int MAX = 10;
         const int MIN = 0;
 
-        const string FILE_PATH = "./data.txt";
+        const string FILE_PATH = "data.txt";
         const string SEPARATOR = ";";
         const string NEW_LINE = "!n";
 

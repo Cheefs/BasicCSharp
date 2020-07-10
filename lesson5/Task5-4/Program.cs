@@ -134,7 +134,7 @@ namespace Task5_4
     class Program
     {
         const int MAX_COUNT = 3;
-        const string FILE_PATH = "./students.txt";
+        const string FILE_PATH = "students.txt";
         static void Main()
         {
             try

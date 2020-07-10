@@ -9,7 +9,7 @@ namespace Task4_3
 {
     class Program
     {
-        const string FILE_PATH = "./credencials.txt";
+        const string FILE_PATH = "credencials.txt";
         const string SEPARATOR = ";";
         const int RETRYS_COUNT = 3;
 
