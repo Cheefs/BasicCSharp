@@ -43,7 +43,7 @@ namespace Task5_1
 
         public static bool RegExpValidate( string login )
         {
-            Regex regex = new Regex(@"^\D[a-zA-z0-9]+$", RegexOptions.IgnoreCase );
+            Regex regex = new Regex(@"^\D[a-z0-9]+$", RegexOptions.IgnoreCase );
             return regex.IsMatch(login);
         }
     }
