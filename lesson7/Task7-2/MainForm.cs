@@ -16,7 +16,6 @@ namespace Task7_2
     {
         AnswerForm answerForm;
         GuesNumberGame game;
-        bool isShowAnswerForm = false;
 
         public delegate void SetAnsewerCallBack(int x);
 
@@ -28,12 +27,7 @@ namespace Task7_2
             labelTryCount.Text = game.TryCount.ToString();
 
             answerForm = new AnswerForm(CallBack);
-
-            answerForm.Disposed += (object sender, EventArgs e) => {
-                isShowAnswerForm = false;
-            };
         }
-
 
         public void CallBack(int x)
         {
@@ -41,25 +35,16 @@ namespace Task7_2
 
             MessageBox.Show(message, "info");
             labelTryCount.Text = game.TryCount.ToString();
+
+            if ( game.TryCount == 0)
+            {
+                answerForm.Hide();
+            }
         }
 
         private void BtnEnterAnswer_Click(object sender, EventArgs e)
         {
-        
-            if ( isShowAnswerForm == false)
-            {
-                if (answerForm.IsDisposed)
-                {
-                    answerForm = new AnswerForm(CallBack);
-                }
-                answerForm.Show();
-            }
-            else
-            {
-                answerForm.Hide();
-            }
-
-            isShowAnswerForm = !isShowAnswerForm;
+            answerForm.ShowDialog();
         }
     }
 }

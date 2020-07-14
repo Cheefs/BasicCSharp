@@ -5,7 +5,7 @@ namespace Task7_2
     public class GuesNumberGame
     {
         const int MIN = 1;
-        const int MAX = 100;
+        const int MAX = 2;
 
         int secretNumber;
         int tryCount = 0;
