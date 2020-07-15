@@ -14,11 +14,88 @@ namespace Task8_3
     public partial class Form1 : Form
     {
         DataBase db;
+        string filename;
+        int activeQuestionIndex = 0;
+        int score = 0;
+
         public Form1()
         {
             InitializeComponent();
             db = new DataBase();
+
+            btnSelectTrue.Visible = false;
+            btnSelectFalse.Visible = false;
         }
+
+        #region game
+
+        private void BtnStartGame_Click(object sender, EventArgs e)
+        {
+            if ( filename == null )
+            {
+                MessageBox.Show("Load Questions before Play!");
+                return;
+            }
+            SwapScreens();
+            gameQuestionText.Text = db[activeQuestionIndex].Text;
+
+        }
+
+        private void BtnSelectTrue_Click(object sender, EventArgs e)
+        {
+            CheckAnswer(true);
+        }
+
+        private void BtnSelectFalse_Click(object sender, EventArgs e)
+        {
+            CheckAnswer(false);
+        }
+
+        private void CheckAnswer(bool answer)
+        {
+            bool isCorrect = db[activeQuestionIndex].TrueFalse  == answer;
+
+            if (isCorrect)
+            {
+                score++;
+                correctAnswersCount.Text = score.ToString();
+            }
+
+            answerCheck.Text = isCorrect.ToString();
+            answerCheck.ForeColor = isCorrect ? Color.Green : Color.Red;
+
+            NextQuestion();
+        }
+
+        private void NextQuestion()
+        {
+            ++activeQuestionIndex;
+
+            if(activeQuestionIndex < db.Count)
+            {
+                gameQuestionText.Text = db[activeQuestionIndex].Text;
+                return;
+            }
+
+            gameQuestionText.Text = $"Game Ower!\n Your score is { score }/{ db.Count }\n Press Start to restart game";
+  
+            SwapScreens();
+        }
+
+        private void SwapScreens()
+        {
+            btnStartGame.Visible = !btnStartGame.Visible;
+            btnSelectTrue.Visible = !btnSelectTrue.Visible;
+            btnSelectFalse.Visible = !btnSelectFalse.Visible;
+
+            answerCheck.Text = String.Empty;
+            correctAnswersCount.Text = "0";
+            activeQuestionIndex = 0;
+        }
+
+        #endregion
+
+        #region questionsEditor
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
@@ -53,7 +130,7 @@ namespace Task8_3
             btnTrueOrFalse.Checked = question.TrueFalse;
         }
 
-        private void dtnDelete_Click(object sender, EventArgs e)
+        private void DtnDelete_Click(object sender, EventArgs e)
         {
             int selectedIndex = (int)questionIndex.Value;
             bool canDelete = selectedIndex <= db.Count - 1;
@@ -74,9 +151,17 @@ namespace Task8_3
             btnTrueOrFalse.Text = isChecked.ToString();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
-            SaveFile();
+            if ( filename.Trim() != String.Empty )
+            {
+                db.Save(filename);
+            }
+            else
+            {
+                SaveFile();
+            }
+
         }
 
         private void SaveAs_Click(object sender, EventArgs e)
@@ -125,6 +210,23 @@ namespace Task8_3
             questionsCount.Text = db.Count.ToString();
         }
 
+        private void LoadFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            DialogResult res = dialog.ShowDialog();
+
+            if ( res == DialogResult.OK )
+            {
+                filename = dialog.FileName;
+
+                loadedFilename.Text = filename;
+
+                db.Load(filename);
+                questionsCount.Text = db.Count.ToString();
+            }
+        }
+        #endregion
 
     }
 }
